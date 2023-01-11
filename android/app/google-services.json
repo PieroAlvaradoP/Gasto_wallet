@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1028760988341",
+    "project_id": "gastowallet-97946",
+    "storage_bucket": "gastowallet-97946.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1028760988341:android:59eddf60b347bcf77e2cfc",
+        "android_client_info": {
+          "package_name": "com.gastowallet.gasto_wallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1028760988341-30nk19fpice6at1vdahsa981iud8gt56.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZkBAL4z1IeQIQRCutZinLegygRATGUm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1028760988341-30nk19fpice6at1vdahsa981iud8gt56.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
