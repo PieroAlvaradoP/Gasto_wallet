@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'graph_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -72,7 +75,15 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return const Login();
+              },
+            ),
+          );
+        },
         child: const Icon(Icons.add),
       ),
       body: _body(),
@@ -164,7 +175,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Text(
-          'Total de Gastos',
+          'Presupuesto del mes',
           style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16.0,
