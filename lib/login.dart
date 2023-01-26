@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'sign_up.dart';
+import 'main.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
-
   @override
   State<Login> createState() => _MyLogin();
 }
@@ -68,8 +69,13 @@ class _MyLogin extends State<Login> {
                   child: ElevatedButton(
                     child: const Text('Iniciar Sesión'),
                     onPressed: () {
-                      print(nameController.text);
-                      print(passwordController.text);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return const MyApp();
+                          },
+                        ),
+                      );
                     },
                   )
               ),
@@ -83,7 +89,13 @@ class _MyLogin extends State<Login> {
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: () {
-                      //signup screen
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return const SingUp();
+                          },
+                        ),
+                      );
                     },
                   )
                 ],
