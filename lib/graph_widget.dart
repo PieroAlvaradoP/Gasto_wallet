@@ -2,7 +2,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class LineChartSample2 extends StatefulWidget {
-  const LineChartSample2({Key? key}) : super(key: key);
+  final List<double> data;
+  const LineChartSample2({Key? key, required this.data}) : super(key: key);
 
   @override
   _LineChartSample2State createState() => _LineChartSample2State();
