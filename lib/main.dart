@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'graph_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'login.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -232,7 +230,7 @@ class _HomePageState extends State<HomePage> {
   Widget _list() {
     return Expanded(
         child: ListView.separated(
-          itemCount: 14,
+          itemCount: 1,
           itemBuilder: (BuildContext context, int index) =>
               _itemList(FontAwesomeIcons.cartShopping, 'Compras', 14, 145.12),
           separatorBuilder: (BuildContext context, int index) {
@@ -241,12 +239,7 @@ class _HomePageState extends State<HomePage> {
               height: 8,
             );
           },
-          /*children: const <Widget>[
-      _itemList(FontAwesomeIcons.cartShopping, 'Compras', 14, 145.12),
-      _itemList(FontAwesomeIcons.wineGlass, 'Alcohol', 10, 73.3),
-      _itemList(FontAwesomeIcons.burger, 'Comida', 11, 123.32),
-      _itemList(FontAwesomeIcons.cartShopping, 'Compras', 10, 100.12)
-    ],*/
-        ));
+        )
+    );
   }
 }

@@ -1,6 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:gasto_wallet/login.dart';
 
+void main() {
+  runApp(const MyAppSignUp());
+}
+
+class MyAppSignUp extends StatelessWidget {
+  const MyAppSignUp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'GastoWallet',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const SingUp(),
+    );
+  }
+}
+
 class SingUp extends StatefulWidget {
   const SingUp({Key? key}) : super(key: key);
 
@@ -29,7 +49,8 @@ class _MySingUp extends State<SingUp> {
                         color: Colors.blue,
                         fontWeight: FontWeight.w500,
                         fontSize: 30),
-                  )),
+                  )
+              ),
               Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),

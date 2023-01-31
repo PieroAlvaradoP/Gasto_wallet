@@ -2,6 +2,26 @@ import 'package:flutter/material.dart';
 import 'sign_up.dart';
 import 'main.dart';
 
+void main() {
+  runApp(const MyAppLogin());
+}
+
+class MyAppLogin extends StatelessWidget {
+  const MyAppLogin({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'GastoWallet',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const Login(),
+    );
+  }
+}
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
   @override
