@@ -184,14 +184,15 @@ class _AddPageState extends State<AddPage> {
             ),
             onPressed: () {
               if (value > 0 && category != "") {
-                // FirebaseFirestore.instance
-                //     .collection('expenses')
-                //     .setData({
-                //   "category": category,
-                //   "value": value / 100.0,
-                //   "month": DateTime.now().month,
-                //   "day": DateTime.now().day,
-                // });
+                FirebaseFirestore.instance
+                    .collection('expenses')
+                    .doc()
+                    .set({
+                  "category": category,
+                  "value": value / 100.0,
+                  "month": DateTime.now().month,
+                  "day": DateTime.now().day,
+                });
 
                 Navigator.of(context).pop();
               } else {
