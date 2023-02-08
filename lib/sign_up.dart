@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gasto_wallet/login.dart';
+import 'package:gasto_wallet/pages/login_page.dart';
 
 void main() {
   runApp(const MyAppSignUp());
@@ -116,7 +116,7 @@ class _MySingUp extends State<SingUp> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return const Login();
+                            return LoginPage();
                           },
                         ),
                       );

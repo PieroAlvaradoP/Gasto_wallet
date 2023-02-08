@@ -19,7 +19,7 @@ class _AddPageState extends State<AddPage> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        title: Text(
+        title: const Text(
           "Categorias",
           style: TextStyle(
             color: Colors.grey,
@@ -28,7 +28,7 @@ class _AddPageState extends State<AddPage> {
         centerTitle: false,
         actions: <Widget>[
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.close,
               color: Colors.grey,
             ),
@@ -57,7 +57,7 @@ class _AddPageState extends State<AddPage> {
     return Container(
       height: 80.0,
       child: CategorySelectionWidget(
-        categories: {
+        categories: const {
           "Compras": Icons.shopping_cart,
           "Alcohol": FontAwesomeIcons.beer,
           "Comida": FontAwesomeIcons.hamburger,
@@ -76,7 +76,7 @@ class _AddPageState extends State<AddPage> {
       padding: const EdgeInsets.symmetric(vertical: 32.0),
       child: Text(
         "S/ ${realValue.toStringAsFixed(2)}",
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 50.0,
           color: Colors.blueAccent,
           fontWeight: FontWeight.w500,
@@ -102,7 +102,7 @@ class _AddPageState extends State<AddPage> {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 40,
               color: Colors.grey,
             ),
@@ -150,7 +150,7 @@ class _AddPageState extends State<AddPage> {
                 },
                 child: Container(
                   height: height,
-                  child: Center(
+                  child: const Center(
                     child: Icon(
                       Icons.backspace,
                       color: Colors.grey,
@@ -175,7 +175,7 @@ class _AddPageState extends State<AddPage> {
           width: double.infinity,
           decoration: BoxDecoration(color: Colors.blueAccent),
           child: MaterialButton(
-            child: Text(
+            child: const Text(
               "Agregar Gasto",
               style: TextStyle(
                 color: Colors.white,
@@ -184,10 +184,7 @@ class _AddPageState extends State<AddPage> {
             ),
             onPressed: () {
               if (value > 0 && category != "") {
-                FirebaseFirestore.instance
-                    .collection('expenses')
-                    .doc()
-                    .set({
+                FirebaseFirestore.instance.collection('expenses').doc().set({
                   "category": category,
                   "value": value / 100.0,
                   "month": DateTime.now().month,
@@ -196,7 +193,7 @@ class _AddPageState extends State<AddPage> {
 
                 Navigator.of(context).pop();
               } else {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text("Seleccione un valor y una categoría")));
               }
             },
