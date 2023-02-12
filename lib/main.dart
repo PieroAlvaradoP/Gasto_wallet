@@ -5,7 +5,6 @@ import 'package:gasto_wallet/pages/add_page.dart';
 import 'package:gasto_wallet/pages/home_page.dart';
 import 'package:gasto_wallet/pages/login_page.dart';
 import 'package:provider/provider.dart';
-import 'package:gasto_wallet/login_state.dart';
 import 'month_widget.dart';
 
 void main() {
