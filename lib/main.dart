@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (BuildContext contex){
           var state = Provider.of<LoginState>(context, listen: true);
-          print(state);
           if(state.isLoggedIn()){
             return const HomePage();
           }else{

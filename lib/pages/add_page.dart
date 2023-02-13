@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gasto_wallet/category_selection_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gasto_wallet/login_state.dart';
+import 'package:provider/provider.dart';
 
 class AddPage extends StatefulWidget {
   @override
@@ -173,7 +175,7 @@ class _AddPageState extends State<AddPage> {
         child: Container(
           height: 50.0,
           width: double.infinity,
-          decoration: BoxDecoration(color: Colors.blueAccent),
+          decoration: const BoxDecoration(color: Colors.blueAccent),
           child: MaterialButton(
             child: const Text(
               "Agregar Gasto",
@@ -183,8 +185,12 @@ class _AddPageState extends State<AddPage> {
               ),
             ),
             onPressed: () {
+              var user = Provider.of<LoginState>(context,listen: false).currentUser();
               if (value > 0 && category != "") {
-                FirebaseFirestore.instance.collection('expenses').doc().set({
+                FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(user?.uid)
+                    .collection('expenses').doc().set({
                   "category": category,
                   "value": value / 100.0,
                   "month": DateTime.now().month,

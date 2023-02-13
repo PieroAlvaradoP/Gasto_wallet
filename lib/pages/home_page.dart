@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gasto_wallet/login_state.dart';
 import 'package:gasto_wallet/month_widget.dart';
@@ -10,6 +8,7 @@ import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -22,10 +21,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _query = FirebaseFirestore.instance
-        .collection('expenses')
-        .where('month', isEqualTo: currentPage + 1)
-        .snapshots();
     _controller = PageController(
       initialPage: currentPage,
       viewportFraction: 0.4,
@@ -44,38 +39,51 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        notchMargin: 8.0,
-        shape: const CircularNotchedRectangle(),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            _bottomAction(FontAwesomeIcons.clockRotateLeft,(){}),
-            _bottomAction(FontAwesomeIcons.chartPie,(){}),
-            const SizedBox(width: 48.0),
-            _bottomAction(FontAwesomeIcons.wallet,(){}),
-            _bottomAction(Icons.settings,(){
-              Provider.of<LoginState>(context, listen: false).logout();
-            }),
-          ],
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) {
-                return  AddPage();
-              },
+    return Consumer<LoginState>(
+      builder: (BuildContext context, LoginState state, Widget? child) {
+        var user = Provider.of<LoginState>(context).currentUser();
+        _query = FirebaseFirestore.instance
+            .collection('users')
+            .doc(user?.uid)
+            .collection('expenses')
+            .where("month", isEqualTo: currentPage + 1)
+            .snapshots();
+
+        return Scaffold(
+          bottomNavigationBar: BottomAppBar(
+            notchMargin: 8.0,
+            shape: const CircularNotchedRectangle(),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                _bottomAction(FontAwesomeIcons.clockRotateLeft, () {}),
+                _bottomAction(FontAwesomeIcons.chartPie, () {}),
+                const SizedBox(width: 48.0),
+                _bottomAction(FontAwesomeIcons.wallet, () {}),
+                _bottomAction(Icons.settings, () {
+                  Provider.of<LoginState>(context, listen: false).logout();
+                }),
+              ],
             ),
-          );
-        },
-        child: const Icon(Icons.add),
-      ),
-      body: _body(),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return AddPage();
+                  },
+                ),
+              );
+            },
+            child: const Icon(Icons.add),
+          ),
+          body: _body(),
+        );
+      },
     );
   }
 
@@ -86,17 +94,16 @@ class _HomePageState extends State<HomePage> {
           _selector(),
           StreamBuilder<QuerySnapshot>(
               stream: _query,
-              builder: (BuildContext contex, AsyncSnapshot<QuerySnapshot> data) {
-                if(data.hasData){
+              builder:
+                  (BuildContext contex, AsyncSnapshot<QuerySnapshot> data) {
+                if (data.hasData) {
                   return MonthWidget(documents: data.data!.docs);
-                }else{
+                } else {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
-              }
-          ),
-
+              }),
         ],
       ),
     );
@@ -125,7 +132,8 @@ class _HomePageState extends State<HomePage> {
 
     return Align(
       alignment: alignment,
-      child: Text(name,
+      child: Text(
+        name,
         style: position == currentPage ? selected : unselected,
       ),
     );
@@ -135,16 +143,20 @@ class _HomePageState extends State<HomePage> {
     return SizedBox.fromSize(
       size: const Size.fromHeight(70.0),
       child: PageView(
-        onPageChanged: (newPage){
+        onPageChanged: (newPage) {
           setState(() {
+            var user =
+                Provider.of<LoginState>(context, listen: false).currentUser();
             currentPage = newPage;
             _query = FirebaseFirestore.instance
+                .collection('users')
+                .doc(user?.uid)
                 .collection('expenses')
                 .where('month', isEqualTo: currentPage + 1)
                 .snapshots();
           });
         },
-        controller:_controller,
+        controller: _controller,
         children: <Widget>[
           _pageItem("Enero", 0),
           _pageItem("Febrero", 1),
