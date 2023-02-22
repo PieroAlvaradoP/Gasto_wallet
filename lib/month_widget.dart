@@ -73,7 +73,7 @@ class _State extends State<MonthWidget> {
   Widget _graph() {
     return SizedBox(
         height: 250.0,
-        child: LinesGraphWidget(data: widget.perDay),
+        child: LineChartSample2(data: widget.perDay),
     );
   }
 

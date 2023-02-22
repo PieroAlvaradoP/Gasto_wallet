@@ -24,6 +24,7 @@ class LoginPage extends StatelessWidget {
             },
             label: const Text('Iniciar Sesión'),
             backgroundColor: Colors.blue,
+            icon: const Icon(Icons.facebook),
           ),
         ),
       ),
