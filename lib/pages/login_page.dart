@@ -6,20 +6,24 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Iniciar Sesión'),
+      ),
       body: Center(
         child: Consumer<LoginState>(
-          builder: (BuildContext context, LoginState value, Widget? child){
-            if(value.isLoading()){
+          builder: (BuildContext context, LoginState value, Widget? child) {
+            if (value.isLoading()) {
               return const CircularProgressIndicator();
-            }else{
-              return child ?? Container();;
+            } else {
+              return child ?? Container();
             }
           },
-          child: ElevatedButton(
-            child: const Text('Iniciar Sesión'),
+          child: FloatingActionButton.extended(
             onPressed: () {
               Provider.of<LoginState>(context, listen: false).login();
             },
+            label: const Text('Iniciar Sesión'),
+            backgroundColor: Colors.blue,
           ),
         ),
       ),
