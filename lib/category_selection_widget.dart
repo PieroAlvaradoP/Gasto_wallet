@@ -7,6 +7,7 @@ class CategorySelectionWidget extends StatefulWidget {
   const CategorySelectionWidget({Key? key, required this.categories, required this.onValueChanged}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CategorySelectionWidgetState createState() =>
       _CategorySelectionWidgetState();
 }

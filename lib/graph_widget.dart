@@ -24,7 +24,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
             color: Colors.white),
         child: Padding(
           padding: const EdgeInsets.only(
-              right: 18.0, left: 12.0, top: 24, bottom: 12),
+              right: 18.0, left: 18.0, top: 24, bottom: 12),
           child: LineChart(
             LineChartData(
               lineTouchData: LineTouchData(enabled: true),
@@ -37,7 +37,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
                   isCurved: true,
                   color: Colors.blue,
                   barWidth: 3,
-                  dotData: FlDotData(show: false),
+                  dotData: FlDotData(show: true),
                 ),
               ],
               minY: 0,
@@ -45,7 +45,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
                   bottomTitles: AxisTitles(
                     sideTitles: SideTitles(
                       showTitles: true,
-                      reservedSize: 30,
+                      reservedSize: 50,
                       interval: 1,
                       getTitlesWidget: bottomTitleWidgets,
                     ),
