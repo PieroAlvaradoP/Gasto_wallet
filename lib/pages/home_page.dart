@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) {
-                    return AddPage();
+                    return AddPage(data:currentPage);
                   },
                 ),
               );

@@ -6,6 +6,10 @@ import 'package:gasto_wallet/login_state.dart';
 import 'package:provider/provider.dart';
 
 class AddPage extends StatefulWidget {
+  final int? data;
+
+  const AddPage({Key? key, this.data}) : super(key: key);
+
   @override
   _AddPageState createState() => _AddPageState();
 }
@@ -193,7 +197,7 @@ class _AddPageState extends State<AddPage> {
                     .collection('expenses').doc().set({
                   "category": category,
                   "value": value / 100.0,
-                  "month": DateTime.now().month,
+                  "month": widget.data! + 1 ,
                   "day": DateTime.now().day,
                 });
 
